@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const SingleQuestion = ({ id, title, info }) => {
+  const [showInfo, setShowInfo] = useState(false);
+
   return (
     <article className="question">
       <header>
         <h5>{title}</h5>
-        <button type="button" className="question-btn">
-          <AiOutlinePlus />
+        <button
+          type="button"
+          className="question-btn"
+          onClick={() => setShowInfo(!showInfo)}
+        >
+          {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
       </header>
-
-      <p>{info}</p>
+      <p>{showInfo && info}</p>
     </article>
   );
 };
